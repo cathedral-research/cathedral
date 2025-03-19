@@ -18,6 +18,7 @@
     --font-mono: CommitMono, monospace;
     --color-grey-100: #ececed;
     --color-grey-500: #555;
+    --color-grey-300: #888;
 }
 
 @layer base {

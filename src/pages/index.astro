@@ -20,8 +20,8 @@ const posts = (await getCollection("blog")).sort(
                 <h1 class="text-center mt-10">
                     ⛪ cathedral research group 🔭
                 </h1>
-                <h1 class="text-center mt-10">latest posts</h1>
-                <ul>
+                <h1 class="text-center mt-10 text-grey-300">latest posts</h1>
+                <ul class="flex flex-col items-center">
                     {
                         posts.map((post) => (
                             <li>
@@ -40,6 +40,10 @@ const posts = (await getCollection("blog")).sort(
                         ))
                     }
                 </ul>
+                <h1 class="text-center mt-10 text-grey-300">
+                    official MC server
+                </h1>
+                <h1 class="text-center">play.cathedralresearch.com</h1>
             </div>
         </main>
     </body>
