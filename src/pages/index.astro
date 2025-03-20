@@ -5,11 +5,8 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 
 const posts = (await getCollection("blog"))
-.filter(
-    (post) => !post.data.authors.includes("ignore")
-).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+    .filter((post) => !post.data.authors.includes("ignore"))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
@@ -24,11 +21,16 @@ const posts = (await getCollection("blog"))
                     ⛪ cathedral research group 🔭
                 </h1>
                 <h2 class="text-center text-grey-300">
-                    <a href="https://github.com/cathedral-research/cathedral" target="_blank">github</a>
+                    <a
+                        href="https://github.com/cathedral-research/cathedral"
+                        target="_blank">github</a
+                    >
                     <span>|</span>
                     <a href="/rss.xml" target="_blank">rss</a>
                     <span>|</span>
-                    <a href="https://youtu.be/qQzdAsjWGPg" target="_blank">my way</a>
+                    <a href="https://youtu.be/qQzdAsjWGPg" target="_blank"
+                        >my way</a
+                    >
                 </h2>
                 <h1 class="text-center mt-10 text-grey-300">latest posts</h1>
                 <ul class="flex flex-col items-center">
@@ -50,6 +52,12 @@ const posts = (await getCollection("blog"))
                         ))
                     }
                 </ul>
+                <a
+                    href="/blog"
+                    class="text-center mt-10 text-grey-300 hover:underline"
+                    >all posts</a
+                >
+
                 <h1 class="text-center mt-10 text-grey-300">
                     official MC server
                 </h1>
