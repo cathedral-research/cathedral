@@ -3,3 +3,4 @@
 
 export const SITE_TITLE = 'Cathedral Research Group';
 export const SITE_DESCRIPTION = 'There are cathedrals everywhere for those with the eyes to see.';
+export const AUTHORS = ['ignore', 'test', 'test1', 'tyler', 'luke', 'jay'] as const;
