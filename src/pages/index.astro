@@ -17,7 +17,7 @@ const posts = (await getCollection("blog"))
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
     <body class="flex-col w-screen p-4">
-        <nav class="max-w-lg w-full flex justify-between mx-auto mt-4 px-2">
+        <nav class="max-w-md w-full flex justify-between mx-auto mt-4 px-2">
             <span class="text-2xl">⛪🔭</span>
             <div class="flex text-brown-300 font-normal underline gap-2">
                 <a href="/rss.xml" target="_blank">rss</a>
@@ -29,7 +29,7 @@ const posts = (await getCollection("blog"))
                 >
             </div>
         </nav>
-        <main class="max-w-lg w-full flex flex-col mx-auto">
+        <main class="max-w-md w-full flex flex-col mx-auto">
             <h1 class="mt-10 font-serif text-2xl pl-2">
                 cathedral research group
             </h1>
