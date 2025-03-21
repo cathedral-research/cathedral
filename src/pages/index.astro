@@ -31,20 +31,17 @@ const posts = (await getCollection("blog"))
         </nav>
         <main class="max-w-lg w-full flex flex-col mx-auto">
             <h1 class="mt-10 font-serif text-2xl">Cathedral Research Group</h1>
-            <p class="mt-1 text-brown-300">For those with eyes to see</p>
-            <h1 class="mt-10 text-brown-300">Newest posts</h1>
+            <h1 class="mt-8 text-brown-300 font-serif">newest posts</h1>
             <ul class="flex flex-col mt-2 gap-1">
                 {
                     posts.map((post) => (
                         <li>
                             <a
-                                class="shadow-sm shadow-brown-300/10 transition-colors hover:bg-eggshell-50/60 bg-eggshell-50 gap-0.5 flex flex-col p-2 px-3 rounded-lg border border-eggshell-200"
+                                class="shadow-sm shadow-brown-300/10 transition-colors hover:bg-eggshell-50/60 bg-eggshell-50 gap-0.5 flex justify-between p-2 px-3 rounded border border-eggshell-200"
                                 href={`/blog/${post.id}/`}
                             >
-                                <h4 class="font-serif text-lg">
-                                    {post.data.title}
-                                </h4>
-                                <p class="text-brown-300 text-sm">
+                                <h4 class="font-medium">{post.data.title}</h4>
+                                <p class="text-brown-300m">
                                     <FormattedDate date={post.data.pubDate} />
                                 </p>
                             </a>
@@ -54,22 +51,23 @@ const posts = (await getCollection("blog"))
             </ul>
             <a
                 href="/blog"
-                class="mt-4 flex transition-transform hover:scale-[101%] justify-between bg-gradient-to-b shadow-sm shadow-brown-300/50 from-brown-400 to-brown-500 text-eggshell-50 font-medium pl-3 pr-2 py-2 rounded-lg border border-brown-600"
-                >View All Posts <Arrow /></a
+                class="mt-2 flex items-center transition-transform hover:translate-x-0.5 font-medium"
+                >view all <Arrow /></a
             >
-            <h1 class="mt-10 font-serif text-2xl">Minecraft Server</h1>
-            <div class="flex gap-2 mt-3">
+            <h1 class="mt-8 text-brown-300 font-serif">minecraft server</h1>
+
+            <div class="flex gap-2 mt-2">
                 <div
-                    class="bg-eggshell-200 px-3 py-2 border border-brown-300/20 rounded-lg w-full"
+                    class="px-3 py-2 border border-brown-300/20 rounded w-full flex justify-between"
                 >
                     play.cathedralresearch.com
+                    <button
+                        onclick="alert('hi')"
+                        class="font-medium transition-transform hover:scale-[101%] hover:cursor-pointer"
+                    >
+                        Copy Address
+                    </button>
                 </div>
-                <button
-                    onclick="alert('hi')"
-                    class="bg-gradient-to-b from-eggshell-50 to-eggshell-100 transition-transform hover:scale-[101%] hover:cursor-pointer hover px-3 py-2 border border-eggshell-250 rounded-lg text-nowrap"
-                >
-                    Copy Address
-                </button>
             </div>
         </main>
     </body>
