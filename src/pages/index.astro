@@ -61,12 +61,22 @@ const posts = (await getCollection("blog"))
 
             <div class="flex gap-2 mt-1">
                 <div
-                    class="px-2 py-1 border border-brown-300/20 flex-1 rounded-lg flex justify-between"
+                    onclick="
+                navigator.clipboard.writeText('play.cathedralresearch.com');
+                document.getElementById('copy').innerText = 'copied';
+                "
+                    class="px-2 py-1 group border border-brown-300/20 flex-1 rounded-lg flex"
                 >
-                    play.cathedralresearch.com
+                    <span class="group-hover:bg-eggshell-200">
+                        play.cathedralresearch.com
+                    </span>
                 </div>
                 <button
-                    onclick="navigator.clipboard.writeText('play.cathedralresearch.com');"
+                    id="copy"
+                    onclick="
+                    navigator.clipboard.writeText('play.cathedralresearch.com');
+                    document.getElementById('copy').innerText = 'copied';
+                    "
                     class="transition-colors px-2 py-1 hover:bg-eggshell-200 bg-eggshell-200/50 hover:cursor-pointer text-brown-500 border border-brown-300/20 rounded-lg"
                 >
                     copy

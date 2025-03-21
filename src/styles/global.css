@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+::selection {
+    color: deeppink;
+    background: indigo;
+}
+
 @font-face {
     font-family: "CommitMono";
     src: url("/fonts/CommitMono-400-Regular.otf") format("opentype");
