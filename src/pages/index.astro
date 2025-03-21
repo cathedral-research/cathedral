@@ -3,10 +3,12 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
+import Arrow from "../components/Arrow.astro";
 
 const posts = (await getCollection("blog"))
     .filter((post) => !post.data.authors.includes("ignore"))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3);
 ---
 
 <!doctype html>
@@ -14,54 +16,60 @@ const posts = (await getCollection("blog"))
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
-    <body>
-        <main class="flex w-screen h-screen">
-            <div class="flex flex-col mx-auto">
-                <h1 class="text-center mt-10">
-                    ⛪ cathedral research group 🔭
-                </h1>
-                <h2 class="text-center text-grey-300">
-                    <a
-                        href="https://github.com/cathedral-research/cathedral"
-                        target="_blank">github</a
-                    >
-                    <span>|</span>
-                    <a href="/rss.xml" target="_blank">rss</a>
-                    <span>|</span>
-                    <a href="https://youtu.be/qQzdAsjWGPg" target="_blank"
-                        >my way</a
-                    >
-                </h2>
-                <h1 class="text-center mt-10 text-grey-300">latest posts</h1>
-                <ul class="flex flex-col items-center">
-                    {
-                        posts.map((post) => (
-                            <li>
-                                <a
-                                    class="flex gap-4 hover:underline"
-                                    href={`/blog/${post.id}/`}
-                                >
-                                    <h4>{post.data.title}</h4>
-                                    <p>
-                                        <FormattedDate
-                                            date={post.data.pubDate}
-                                        />
-                                    </p>
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
+    <body class="flex-col w-screen">
+        <nav class="max-w-lg w-full flex justify-between mx-auto mt-4">
+            <span class="text-2xl">⛪🔭</span>
+            <div class="flex text-brown-300 font-normal underline gap-2">
+                <a href="/rss.xml" target="_blank">rss</a>
                 <a
-                    href="/blog"
-                    class="text-center mt-10 text-grey-300 hover:underline"
-                    >all posts</a
+                    href="https://github.com/cathedral-research/cathedral"
+                    target="_blank">github</a
                 >
-
-                <h1 class="text-center mt-10 text-grey-300">
-                    official MC server
-                </h1>
-                <h1 class="text-center">play.cathedralresearch.com</h1>
+                <a href="https://youtu.be/qQzdAsjWGPg" target="_blank">my way</a
+                >
+            </div>
+        </nav>
+        <main class="max-w-lg w-full flex flex-col mx-auto">
+            <h1 class="mt-10 font-serif text-2xl">Cathedral Research Group</h1>
+            <p class="mt-1 text-brown-300">For those with eyes to see</p>
+            <h1 class="mt-10 text-brown-300">Newest posts</h1>
+            <ul class="flex flex-col mt-2 gap-1">
+                {
+                    posts.map((post) => (
+                        <li>
+                            <a
+                                class="shadow-sm shadow-brown-300/10 transition-colors hover:bg-eggshell-50/60 bg-eggshell-50 gap-0.5 flex flex-col p-2 px-3 rounded-lg border border-eggshell-200"
+                                href={`/blog/${post.id}/`}
+                            >
+                                <h4 class="font-serif text-lg">
+                                    {post.data.title}
+                                </h4>
+                                <p class="text-brown-300 text-sm">
+                                    <FormattedDate date={post.data.pubDate} />
+                                </p>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+            <a
+                href="/blog"
+                class="mt-4 flex transition-transform hover:scale-[101%] justify-between bg-gradient-to-b shadow-sm shadow-brown-300/50 from-brown-400 to-brown-500 text-eggshell-50 font-medium pl-3 pr-2 py-2 rounded-lg border border-brown-600"
+                >View All Posts <Arrow /></a
+            >
+            <h1 class="mt-10 font-serif text-2xl">Minecraft Server</h1>
+            <div class="flex gap-2 mt-3">
+                <div
+                    class="bg-eggshell-200 px-3 py-2 border border-brown-300/20 rounded-lg w-full"
+                >
+                    play.cathedralresearch.com
+                </div>
+                <button
+                    onclick="alert('hi')"
+                    class="bg-gradient-to-b from-eggshell-50 to-eggshell-100 transition-transform hover:scale-[101%] hover:cursor-pointer hover px-3 py-2 border border-eggshell-250 rounded-lg text-nowrap"
+                >
+                    Copy Address
+                </button>
             </div>
         </main>
     </body>

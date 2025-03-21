@@ -16,13 +16,22 @@
 
 @theme {
     --font-mono: CommitMono, monospace;
-    --color-grey-100: #ececed;
+    --color-eggshell-50: #f9f7f5;
+    --color-eggshell-100: #ebe8e5;
+    --color-eggshell-200: #dad4cd;
+    --color-eggshell-250: #dcd6cf;
+
     --color-grey-500: #555;
     --color-grey-300: #888;
+
+    --color-brown-300: #80756e;
+    --color-brown-400: #67564d;
+    --color-brown-500: #473a33;
+    --color-brown-600: #261a14;
 }
 
 @layer base {
     body {
-        @apply font-mono bg-grey-100 text-grey-500;
+        @apply font-sans bg-eggshell-100 text-brown-500 antialiased;
     }
 }
