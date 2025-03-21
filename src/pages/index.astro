@@ -37,7 +37,7 @@ const posts = (await getCollection("blog"))
                     posts.map((post) => (
                         <li>
                             <a
-                                class="shadow-sm shadow-brown-300/10 transition-colors hover:bg-eggshell-50/60 bg-eggshell-50 gap-0.5 flex justify-between p-2 px-3 rounded border border-eggshell-200"
+                                class=" transition-colors hover:bg-eggshell-50/60 bg-eggshell-50 gap-0.5 flex justify-between p-2 px-3 rounded-md border border-eggshell-200"
                                 href={`/blog/${post.id}/`}
                             >
                                 <h4 class="font-medium">{post.data.title}</h4>
@@ -58,7 +58,7 @@ const posts = (await getCollection("blog"))
 
             <div class="flex gap-2 mt-2">
                 <div
-                    class="px-3 py-2 border border-brown-300/20 rounded w-full flex justify-between"
+                    class="px-3 py-2 border border-brown-300/20 rounded-md w-full flex justify-between"
                 >
                     play.cathedralresearch.com
                     <button
