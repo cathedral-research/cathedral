@@ -1,0 +1,112 @@
+name: Push blogs to Minecraft 
+
+on:
+  push:
+    paths:
+      - 'src/content/blog/*.md'
+
+jobs:
+  process-markdown:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+          
+      - name: Install dependencies
+        run: npm install gray-matter
+      
+      - name: Find and process new markdown files
+        run: |
+          # Create TS script to do the processing
+          cat > process-md.ts << 'EOF'
+          import matter from "gray-matter";
+          import { $ } from "bun";
+          
+          async function getNewPosts() {
+            try {
+              const _lines = $`git diff --name-status HEAD^ HEAD`.lines();
+              let lines: string[] = [];
+          
+              for await (const line of _lines) {
+                lines.push(line);
+              }
+          
+              const filteredLines = lines.flatMap((line) => {
+                const parts = line.split("\t");
+          
+                if (parts[0].startsWith("A")) {
+                  // Added files: ["A", "path/to/file.md"]
+                  return [parts[1]];
+                } else if (parts[0].startsWith("R")) {
+                  // Renamed files: ["R100", "old/path.md", "new/path.md"]
+                  return [parts[2]];
+                }
+          
+                return [];
+              });
+          
+              return filteredLines.filter(
+                (file) => file.endsWith(".md") && file.startsWith("content/"),
+              );
+            } catch (error) {
+              console.error("Error getting changed files:", error);
+              return [];
+            }
+          }
+          
+          async function processMarkdownFile(filePath: string) {
+            try {
+              const fileContent = Bun.file(filePath);
+              const text = await fileContent.text();
+              const { data, content } = matter(text);
+          
+              console.log(`Processing file: ${filePath}`);
+          
+              const body = {
+                title: data.title,
+                pubDate: data.pubDate,
+                author: data.authors.join(" & "),
+                content: content,
+              };
+                    
+              const resp = await fetch("http://localhost:3000/new-post", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+              });
+              if (!resp.ok) {
+                console.log(`Something went wrong processing: ${filePath}`);
+                return;
+              }
+          
+              console.log(`Successfully processed: ${filePath}`);
+            } catch (error) {
+              console.error(`Error processing ${filePath}:`, error);
+            }
+          }
+          
+          async function main() {
+            const posts = await getNewPosts();
+            console.log(`Found ${posts.length} new markdown files`);
+          
+            for (const post of posts) {
+              await processMarkdownFile(post);
+            }
+          }
+          
+          main().catch(console.error);
+          EOF
+          
+          # Run the script
+          bun run process-md.ts
+        shell: bash
