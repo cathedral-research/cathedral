@@ -6,6 +6,8 @@ pubDate: 'May 15 2025'
 heroImage: '/blog-placeholder-3.jpg'
 ---
 
+<img src="/src/content/images/tuchito.jpeg" alt="tuchito" width="200"/>
+
 In my most recent project, I used an 8-wire stepper motor. When I went online to find out how to wire it up, there seemed to be a surprising lack of documentation. I decided to write up this quick explanation as a guide on how to wire and control an 8-wire stepper motor.
 
 The equipment you will need for this are the following:
@@ -42,4 +44,3 @@ Now the stepper motor will function as a normal 4-wire stepper motor. The four i
 References
 [1]	LulzBot, "ht17-275 8 lead stepper motor wiring help," LulzBot, May 06, 2014. https://forum.lulzbot.com/t/ht17-275-8-lead-stepper-motor-wiring-help/587 (accessed May 15, 2025).
 [2]	"3 PCS of TB6600 Stepper Motor Driver, ABuff 5A 9-40V Nema 17 Stepper Motor Driver CNC Controller Single Axes Hybrid Stepperr Motorr Controls - Amazon.com," Amazon.com, 2025. https://www.amazon.com/TB6600-Stepper-Driver-Controller-Controls/dp/B07GVFTHPT (accessed May 15, 2025).
-
