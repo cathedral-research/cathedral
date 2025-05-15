@@ -5,8 +5,10 @@ authors: ['Jay Wilkerson']
 pubDate: 'May 15 2025'
 heroImage: '/blog-placeholder-3.jpg'
 ---
+import { Image } from 'astro:assets';
+import tuchi from '/src/assets/tuchito.jpeg';
 
-<img src="/src/content/images/tuchito.jpeg" alt="tuchito" width="200"/>
+<Image src={tuchi} alt="tuchi." width="200"/>
 
 In my most recent project, I used an 8-wire stepper motor. When I went online to find out how to wire it up, there seemed to be a surprising lack of documentation. I decided to write up this quick explanation as a guide on how to wire and control an 8-wire stepper motor.
 
